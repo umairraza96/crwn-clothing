@@ -38,7 +38,7 @@ export const createUserDocument = async (userAuth, additionalData) => {
     }
     console.log("Document Created!");
   } else {
-    console.log("Document data:", snapshot.data());
+    console.log("User Found");
   }
   return userRef;
 };
