@@ -11,6 +11,7 @@ import { GlobalStyle } from "./global.styles";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import { checkUserSession } from "./redux/user/user.actions";
+import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
@@ -26,18 +27,20 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Suspense fallback={<div>...Loading</div>}>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-        </Suspense>
-        <Route
-          exact
-          path="/signin"
-          render={() =>
-            currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
-          }
-        />
+        <ErrorBoundary>
+          <Suspense fallback={<div>...Loading</div>}>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route exact path="/checkout" component={CheckoutPage} />
+          </Suspense>
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+            }
+          />
+        </ErrorBoundary>
       </Switch>
     </div>
   );
