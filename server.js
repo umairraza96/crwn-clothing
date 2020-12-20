@@ -1,9 +1,8 @@
-const compression = require("compression");
 const express = require("express"),
   bodyParser = require("body-parser"),
   cors = require("cors"),
-  path = require("path");
-compression = require("compression");
+  path = require("path"),
+  compression = require("compression");
 
 if (process.env.NODE !== "production") require("dotenv").config();
 
