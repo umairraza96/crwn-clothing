@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //*****Middlewares*****
-app.use(compression);
+// app.use(compression);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -30,6 +30,7 @@ app.get("/test", (req, res) => {
 });
 
 app.post("/payment", (req, res) => {
+  // console.log("route hit");
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,

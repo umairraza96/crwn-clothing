@@ -7,6 +7,10 @@ const StripeCheckoutButton = ({ price }) => {
   const publishableKey = "pk_test_RJDYrF8aWeXvIXX6pw7XuIA100Ku1yMSTQ";
   const onToken = (token) => {
     console.log(token);
+    // axios
+    //   .post("/payment", { amount: priceForStripe, token })
+    //   .then((res) => console.log("Payment Success :", res))
+    //   .catch((err) => console.log("Payment err :", err));
     axios({
       url: "/payment",
       method: "post",
